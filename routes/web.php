@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,11 +25,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
+    return Inertia::render('myPages/products');
 })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/add-product/{id}', function () {
+    return Inertia::render('myPages/addProduct');
+})->name('product.add');
+Route::middleware(['auth:sanctum', 'verified'])->get('/get-product/{id}', [ProductController::class, "getProduct"])->name('product.get');
 
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/new-page', function () {
-    return Inertia::render('myPages/new-page');
-})->name('new-page');
+Route::middleware(['auth:sanctum', 'verified'])->post('/products', [ProductController::class, "productsList"])->name('products.list.post');
+Route::middleware(['auth:sanctum', 'verified'])->post('/add-product', [ProductController::class, "saveProduct"])->name('product.save');
