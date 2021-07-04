@@ -31,7 +31,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
     return Inertia::render('myPages/products');
 })->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/add-product/{id}', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/add-product/{id?}', function () {
     return Inertia::render('myPages/addProduct');
 })->name('product.add');
 Route::middleware(['auth:sanctum', 'verified'])->get('/get-product/{id}', [ProductController::class, "getProduct"])->name('product.get');

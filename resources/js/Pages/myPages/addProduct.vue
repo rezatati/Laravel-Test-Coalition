@@ -84,8 +84,10 @@ export default {
     JetSecondaryButton,
   },
   beforeMount() {
-    this.form.id = route().params.id;
-    this.getProductInfo(route().params.id);
+    if (route().params.id) {
+      this.form.id = route().params.id;
+      this.getProductInfo(route().params.id);
+    }
   },
   data() {
     return {

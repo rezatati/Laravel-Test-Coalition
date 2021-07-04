@@ -5,6 +5,8 @@
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Products
       </h2>
+
+      <jet-button @click="goToAddProductPage"> Add Product </jet-button>
     </template>
 
     <div class="py-12">
@@ -40,7 +42,7 @@
                 <td>
                   <a
                     @click="GoEditForm(product.id)"
-                    style="color: green;cursor: pointer"
+                    style="color: green; cursor: pointer"
                     >Edit</a
                   >
                 </td>
@@ -71,7 +73,7 @@ export default {
   methods: {
     goToAddProductPage() {
       console.log(this);
-      Inertia.visit("/add-product", { method: "get" });
+      Inertia.visit("/add-product/", { method: "get" });
     },
     GoEditForm(id) {
       Inertia.visit("/add-product/" + id, { method: "get" });
